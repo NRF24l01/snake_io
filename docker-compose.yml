@@ -1,0 +1,9 @@
+services:
+  snake_io:
+    build: .
+    ports:
+      - "9001:80"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_ENV=development
