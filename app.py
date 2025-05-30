@@ -1,7 +1,7 @@
 import random
 import time
 from threading import Thread
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 from flask_socketio import SocketIO, emit, join_room, leave_room
 from copy import deepcopy
 
@@ -100,10 +100,17 @@ def update_game_state():
         socketio.emit('update', {'players': players, 'apples': daples}, namespace='/')
         time.sleep(0.1)
 
-
-@app.route('/')
+@app.route("/")
 def index():
-    return render_template('index.html')
+    session['indexed'] = True
+    return render_template("index.html")
+
+@app.route('/game')
+def game():
+    if not session.get('indexed'):
+        return redirect("/")
+    session.pop('indexed', None)
+    return render_template('map.html')
 
 
 @socketio.on('connect')
