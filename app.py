@@ -128,7 +128,6 @@ def handle_move(data):
     direction = data['direction']
     if player_id in players:
         players[player_id]['direction'] = direction
-    emit('update', {'players': players, 'apples': apples}, broadcast=True)
 
 
 @socketio.on('disconnect')
