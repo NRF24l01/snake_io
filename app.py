@@ -105,10 +105,6 @@ def update_game_state():
 def index():
     return render_template('index.html')
 
-@app.route('/d')
-def ddd():
-    return render_template('djostick_test.html')
-
 
 @socketio.on('connect')
 def handle_connect():
