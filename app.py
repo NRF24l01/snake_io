@@ -143,4 +143,4 @@ def handle_disconnect():
 if __name__ == '__main__':
     game_thread = Thread(target=update_game_state)
     game_thread.start()
-    socketio.run(app, debug=True, allow_unsafe_werkzeug=True, host="0.0.0.0", port=80)
+    socketio.run(app, debug=True, host="0.0.0.0", port=80)
